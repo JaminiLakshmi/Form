@@ -1,0 +1,111 @@
+<html>
+<head>
+    <title>Application Form</title>
+    <style>
+        .hlo {
+            margin: 750px;
+            background-color:pink;
+            color: blue;
+            justify-content: center;
+            margin-top: 0px;
+            margin-left: 600px;
+            height: 750px;
+            width: 250px;
+            font-size: 25px;
+            border-radius: 20px;
+        }
+        .form {
+            margin-block-start: 100px;
+            line-height: 50px;
+            margin-left: 10px;
+        }
+        .domain {
+            margin-left: 50px;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1><center>Virtual Internship Form</center></h1>
+    <div class="hlo">
+        <div class="form">
+            <form>
+                Name:<br>
+                <input type="text" name="name1"><br>
+                Email:<br>
+                <input type="email" name="email1"><br>
+                College Name:<br>
+                <input list="id1" name="clgname1">
+                <datalist id="id1">
+                    <option>VRSEC</option>
+                    <option>PVP</option>
+                    <option>GDLV</option>
+                    <option>SRKR</option>
+                    <option>JNTUK</option>
+                    <option>Other</option>
+                </datalist>
+                Domain:
+                <div class="domain">
+                    <input type="radio" name="d1" value="AI-ML">AI-ML<br>
+                    <input type="radio" name="d1" value="Data Science">Data Science<br>
+                    <input type="radio" name="d1" value="Web Development">Web Development<br>
+                    <input type="radio" name="d1" value="Cyber Security">Cyber Security<br>
+                    <input type="radio" name="d1" value="Full Stack Development">Full Stack Development<br>
+                </div>
+                <button onclick="func(this.form)">Verify</button>
+                <button onclick="func1()">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function func(form) 
+        {
+            var name = form.name1.value;
+            var mail = form.email1.value;
+            var clgName = form.clgname1.value;
+
+            var selectedDomains = [];
+            var checkboxes = form.elements["d1"];
+            for (var i = 0; i < checkboxes.length; i++) 
+            {
+                if (checkboxes[i].checked) 
+                {
+                    selectedDomains.push(checkboxes[i].value);
+                }
+            }
+
+            if (name === '' || mail === '' || clgName === '' || selectedDomains.length === 0) 
+            {
+                alert("Please fill in all the fields.");
+            } 
+            else 
+            {
+                var message = "Name: " + name + "\n"
+                    + "Email: " + mail + "\n"
+                    + "College Name: " + clgName + "\n"
+                    + "Selected Domains: " + selectedDomains.join(", ");
+
+                alert(message);
+            }
+        }
+
+        function func1() 
+        {
+            var name = document.querySelector('input[name="name1"]').value;
+            var mail = document.querySelector('input[name="email1"]').value;
+            var clgName = document.querySelector('input[name="clgname1"]').value;
+            var domain = document.querySelector('input[name="d1"]:checked');
+
+            if (!name && !mail && !clgName && !domain) 
+            {
+                alert("Please fill in all the fields before submitting.");
+            } 
+            else 
+            {
+                alert("Application Submitted Successfully!");
+            }
+        }
+    </script>
+</body>
+</html>
